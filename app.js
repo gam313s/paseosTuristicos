@@ -24,7 +24,7 @@ const botonVaciar = document.querySelector("#vaciar");
 let categoriaActual = "todas";
 let textoBusqueda = "";
 let ordenarPorPrecio = false;
-let precioMaximo = Infinity;//NUEVO: sin limite hasta que se cargue el JSON
+let precioMaximo = Infinity;//sumativa: sin limite hasta que se cargue el JSON
 
 //Sumativa: da formato de dinero, ej. 1050 -> $1,050 MXN
 function formatearPrecio(valor) {
