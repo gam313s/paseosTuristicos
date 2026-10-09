@@ -1,0 +1,12 @@
+[
+ { "id":1,  "nombre":"Cenote Azul",             "categoria":"naturaleza",  "precio":350, "cupo":15, "icono":"&#127754;" },
+ { "id":2,  "nombre":"Zona arqueológica",       "categoria":"cultura",     "precio":480, "cupo":20, "icono":"&#128511;" },
+ { "id":3,  "nombre":"Ruta en tirolesa",        "categoria":"aventura",    "precio":750, "cupo":10, "icono":"&#127796;" },
+ { "id":4,  "nombre":"Reserva de tortugas",     "categoria":"naturaleza",  "precio":420, "cupo":18, "icono":"&#128034;" },
+ { "id":5,  "nombre":"Comunidad maya",          "categoria":"cultura",     "precio":550, "cupo":12, "icono":"&#127963;" },
+ { "id":6,  "nombre":"Kayak en manglar",        "categoria":"aventura",    "precio":680, "cupo":8,  "icono":"&#128758;" },
+ { "id":7,  "nombre":"Tour de cochinita pibil", "categoria":"gastronomía", "precio":390, "cupo":12, "icono":"&#127790;" },
+ { "id":8,  "nombre":"Taller de cacao maya",    "categoria":"gastronomía", "precio":460, "cupo":10, "icono":"&#127851;" },
+ { "id":9,  "nombre":"Snorkel en arrecife",     "categoria":"naturaleza",  "precio":620, "cupo":14, "icono":"&#128031;" },
+ { "id":10, "nombre":"Buceo en cenote",         "categoria":"aventura",    "precio":980, "cupo":6,  "icono":"&#129343;" }
+]

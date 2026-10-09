@@ -1,0 +1,237 @@
+/*RETO: colores personalizados (azul mar con naranja coral)*/
+:root { 
+    --primario:#0b7285; 
+    --secundario:#e3f6f5; 
+    --oscuro:#12303a;
+    --claro:#fff; 
+    --gris:#5f6b69; 
+    --acento:#ff7043; /*color extra para precios y detalles*/
+    --peligro:#b3261e; /*NUEVO: botones de eliminar y errores*/
+}
+*
+ { 
+    box-sizing:border-box; 
+}
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7f6;
+}
+.encabezado{
+    min-height: 220px;
+    color: var(--claro);
+    padding: 40px 8%;
+    display: flex;
+    align-items: center;
+    /*De lo Nuevo: nuevo degradado del encabezado*/
+    background: linear-gradient(135deg,#0b3c5d,#0b7285 60%,#f4a261);
+}
+
+.encabezado h1{
+    margin: 0 0 8px;
+    font-size: clamp(2rem,5vw,3.5rem); /* Tamaño Responsivo del Titulo */
+}
+.contenedor{ /* Contenedor Principal */
+ width: min(1100px,90%); 
+ margin: 30px auto;
+}
+/*panel superior*/
+.panel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.panel h2{
+ margin-bottom: 5px;
+}
+/*contador*/
+#contador{
+ color: var(--gris);
+}
+/*Contenedor de los filtros*/
+.filtros{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/*De los Retos: barra con el buscador y el boton de ordenar*/
+.herramientas{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+#buscador{
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 16px;
+    border: 1px solid var(--primario);
+    border-radius: 20px;
+    font-size: 1rem;
+}
+#buscador:focus{
+    outline: 2px solid var(--acento);
+}
+
+/*apariencia a los botones*/
+button{
+    padding: 10px 16px;
+    border: 1px solid var(--primario);
+    border-radius: 20px;
+    background: var(--claro);
+    color: var(--primario);
+    cursor: pointer;
+}
+/*efecto Hover*/
+button:hover, button.activo{
+    background: var(--primario);
+    color: var(--claro);
+}
+/*Catalogo de Experiencias con un css grid*/
+.catalogo{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+.tarjeta{
+    overflow: hidden;
+    border-radius: 14px;
+    background: var(--claro);
+    border-top: 5px solid var(--acento);/*De los Retos(anterior act) : linea de color arriba de la tarjeta*/
+    box-shadow: 0 4px 12px #00000018;
+    transition: transform 0.2s;
+}
+.tarjeta:hover{
+    transform: translateY(-5px);
+}
+/*area de icono*/
+.imagen{
+    min-height: 130px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg,var(--secundario),#fde8dc);/*De los Retos(anterior act: fondo con degradado*/
+    font-size: 3.5rem;
+}
+
+/*informacion de la tarjeta*/
+.informacion{
+    padding: 18px;
+
+}
+/*etiqueta de la Categoria*/
+.etiqueta{
+    color: var(--primario);
+    background: var(--secundario);/*De los Retos(anterior act: etiqueta con fondo*/
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.precio{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--acento);
+}
+
+/*RETO ( de la anterior act) : mensaje cuando no hay resultados, ocupa todas las columnas del grid*/
+.mensaje{
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 0;
+    font-size: 1.2rem;
+    color: var(--gris);
+}
+footer{
+    padding: 20px;
+    text-align: center;
+    color:var(--claro);
+    background: var(--oscuro);
+}
+/*De lo NUEVO: filtro de precio máximo*/
+.filtro-precio{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.filtro-precio input{ accent-color: var(--acento); }
+
+/*De loNUEVO: elementos de la tarjeta para reservar*/
+.cupo{ color: var(--gris); margin: 6px 0; }
+.tarjeta input[type="number"]{
+    width: 75px;
+    padding: 8px;
+    margin: 6px 0 10px;
+    border: 1px solid var(--primario);
+    border-radius: 10px;
+}
+.btn-reservar{ display: block; width: 100%; }
+
+/*De lo NUEVO: resumen de reservación*/
+.resumen{
+    margin-top: 35px;
+    padding: 25px;
+    background: var(--claro);
+    border-radius: 14px;
+    box-shadow: 0 4px 12px #00000018;
+}
+.item-reserva{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+.item-reserva p{ margin: 5px 0; }
+.control-cantidad{ display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.control-cantidad button{ padding: 4px 12px; }
+.totales{ text-align: right; margin: 15px 0 0; }
+.total{ text-align: right; font-size: 1.4rem; font-weight: bold; color: var(--acento); margin: 5px 0 15px; }
+.acciones-reserva{ display: flex; justify-content: flex-end; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/*De lo NUEVO: botones de peligro y mensajes dentro de la página*/
+.btn-eliminar{ border-color: var(--peligro); color: var(--peligro); }
+.btn-eliminar:hover{ background: var(--peligro); color: var(--claro); }
+button:disabled{ opacity: .5; cursor: not-allowed; }
+button:disabled:hover{ background: var(--claro); color: var(--primario); }
+.btn-eliminar:disabled:hover{ background: var(--claro); color: var(--peligro); }
+.aviso{ min-height: 1.2em; margin: 8px 0 0; font-size: .9rem; }
+.aviso.error{ color: var(--peligro); }
+.aviso.ok{ color: var(--primario); }
+[hidden]{ display: none !important; }
+button:focus-visible, input:focus-visible{ outline: 3px solid var(--acento); outline-offset: 2px; }
+
+/*diseño responsivo importante apartir de ahora*/
+/*vista de tableta con media querys*/
+@media(max-width: 900px){
+    .catalogo{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .panel{
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+/*vista de Celular con media querys*/
+@media(max-width: 550px){
+    .catalogo{
+        grid-template-columns: 1fr;
+    }
+    .encabezado{
+        min-height: 180px;
+        padding: 30px 5%;
+    }
+    .filtros button{
+        flex: 1;
+    }
+    .herramientas button{
+        flex: 1;
+    }
+    .item-reserva{ flex-direction: column; align-items: flex-start; }/*NUEVO*/
+}

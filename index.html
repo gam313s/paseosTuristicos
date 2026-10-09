@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explora Riviera Maya</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header class="encabezado">
+        <div>
+            <h1>Explora Riviera Maya</h1>
+            <p>Experiencias naturales, culturales, de aventura y sabor</p>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <section class="panel">
+            <div>
+                <h2>Experiencias disponibles</h2>
+                <p id="contador">0 experiencias encontradas</p>
+            </div>
+            <div class="filtros" aria-label="Filtros del catálogo">
+                <button class="activo" data-categoria="todas">Todas</button>
+                <button data-categoria="naturaleza">Naturaleza</button>
+                <button data-categoria="cultura">Cultura</button>
+                <button data-categoria="aventura">Aventura</button>
+                <!-- De los Retos: nuevo boton de la categoria gastronomia -->
+                <button data-categoria="gastronomía">Gastronomía</button>
+            </div>
+        </section>
+
+        <!-- De los Retos(de la anterior act): buscador por nombre y boton para ordenar por precio -->
+        <section class="herramientas">
+            <input type="text" id="buscador" placeholder="Buscar experiencia por nombre...">
+            <button id="ordenar">Ordenar por precio: menor a mayor</button>
+            <!-- NUEVO: filtro de precio máximo -->
+            <div class="filtro-precio">
+                <label for="precioMaximo">Precio máximo: <output id="precioSalida" for="precioMaximo">$1000 MXN</output></label>
+                <input type="range" id="precioMaximo" min="0" max="1000" step="10" value="1000">
+            </div>
+        </section>
+
+        <section id="catalogo" class="catalogo"></section>
+
+        <!-- NUEVO: resumen de la reservación -->
+        <section class="resumen" aria-labelledby="tituloReserva">
+            <h2 id="tituloReserva">Mi reservación</h2>
+            <div id="listaReservas"><p>No hay experiencias seleccionadas.</p></div>
+            <p id="avisoReserva" class="aviso" role="status" aria-live="polite"></p>
+            <p class="totales">Personas reservadas: <strong id="totalPersonas">0</strong></p>
+            <p class="total">Total: <span id="total">$0 MXN</span></p>
+            <div class="acciones-reserva">
+                <button id="vaciar" class="btn-eliminar" disabled>Vaciar reservación</button>
+                <!-- confirmación dentro de la página (sin alert/confirm) -->
+                <span id="confirmarVaciar" hidden>
+                    ¿Seguro que quieres borrar todo?
+                    <button id="siVaciar" class="btn-eliminar">Sí, vaciar</button>
+                    <button id="noVaciar">Cancelar</button>
+                </span>
+            </div>
+        </section>
+    </main>
+
+    <footer><p>Proyecto académico de desarrollo front-end</p></footer>
+</body>
+</html>
