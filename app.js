@@ -1,8 +1,8 @@
 //java hace 3 cosas en tiempo 1 define estilos 2 genera contenido 3 agrega eventos a los elementos de html (applistener)
 
-// De lo NUEVO: el arreglo ahora se carga desde Data/Experiencias.json con fetch (antes estaba escrito aqui)
+//Sumativa: el arreglo ahora se carga desde Data/Experiencias.json con fetch (antes estaba escrito aqui)
 let experiencias = [];
-//DE lo NUEVO: estado de la reservacion (se pierde al recargar, sin localStorage)
+//Sumativa: estado de la reservacion (se pierde al recargar, sin localStorage)
 let reservas = [];
 
 //obtener los elementos de HTML
@@ -11,7 +11,7 @@ const contador = document.querySelector("#contador");
 const botones = document.querySelectorAll("[data-categoria]");
 const buscador = document.querySelector("#buscador");//De los Retos: caja de busqueda
 const botonOrdenar = document.querySelector("#ordenar");//De los Retos: boton de ordenar
-//NUEVO: elementos del precio maximo y de la reservacion
+//Sumativa: elementos del precio maximo y de la reservacion
 const precioMaximoInput = document.querySelector("#precioMaximo");
 const precioSalida = document.querySelector("#precioSalida");
 const listaReservas = document.querySelector("#listaReservas");
@@ -19,28 +19,25 @@ const totalPersonas = document.querySelector("#totalPersonas");
 const total = document.querySelector("#total");
 const avisoReserva = document.querySelector("#avisoReserva");
 const botonVaciar = document.querySelector("#vaciar");
-const confirmarVaciar = document.querySelector("#confirmarVaciar");
-const botonSiVaciar = document.querySelector("#siVaciar");
-const botonNoVaciar = document.querySelector("#noVaciar");
 
-//De los Retos(de la anterior act): variables que guardan lo que el usuario tiene seleccionado en este momento
+//De los Retos: variables que guardan lo que el usuario tiene seleccionado en este momento
 let categoriaActual = "todas";
 let textoBusqueda = "";
 let ordenarPorPrecio = false;
 let precioMaximo = Infinity;//NUEVO: sin limite hasta que se cargue el JSON
 
-//De lo NUEVO: da formato de dinero, ej. 1050 -> $1,050 MXN
+//Sumativa: da formato de dinero, ej. 1050 -> $1,050 MXN
 function formatearPrecio(valor) {
     return `$${valor.toLocaleString("es-MX")} MXN`;
 }
 
-//De loNUEVO: escribe un mensaje dentro de la pagina (tipo: "ok" o "error")
+//Sumativa: escribe un mensaje dentro de la pagina (tipo: "ok" o "error")
 function mostrarAviso(elemento, texto, tipo = "error") {
     elemento.textContent = texto;
     elemento.className = `aviso ${tipo}`;
 }
 
-//De lo NUEVO: carga el JSON, ajusta el filtro de precio y muestra el catalogo
+//Sumativa: carga el JSON, ajusta el filtro de precio y muestra el catalogo
 async function cargarExperiencias() {
     try {
         contador.textContent = "Cargando experiencias...";
@@ -95,12 +92,12 @@ function mostrarExperiencias(lista) {//funcion para mostrar las experiencias
  contador.textContent = `${lista.length} experiencia${lista.length !== 1 ? "s" : ""}`;
 }
 
-//De los Retos (de la anterior act): quita los acentos y pasa a minusculas para que "arqueologica" encuentre "arqueológica"
+//De los Retos: quita los acentos y pasa a minusculas para que "arqueologica" encuentre "arqueológica"
 function limpiarTexto(texto) {
     return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
-//De los Retos(de la anterior act): esta funcion junta los 3 controles (categoria, busqueda y orden) y muestra el resultado
+//De los Retos: esta funcion junta los 3 controles (categoria, busqueda y orden) y muestra el resultado
 function aplicarFiltros() {
     //1 filtramos por categoria, nombre del buscador y (NUEVO) precio maximo
     const resultados = experiencias.filter(experiencia =>
@@ -118,7 +115,7 @@ function aplicarFiltros() {
     mostrarExperiencias(resultados);
 }
 
-//De loNUEVO: agrega personas a una experiencia (o suma si ya estaba reservada)
+//Sumativa: agrega personas a una experiencia (o suma si ya estaba reservada)
 function agregarReserva(id) {
     const experiencia = experiencias.find(e => e.id === id);
     const cantidad = Number(document.querySelector(`#cantidad-${id}`).value);
@@ -151,10 +148,9 @@ function agregarReserva(id) {
     mostrarReservas();
 }
 
-//De lo NUEVO: dibuja la reservacion y recalcula personas y total
+//Sumativa: dibuja la reservacion y recalcula personas y total
 function mostrarReservas() {
     avisoReserva.textContent = "";
-    confirmarVaciar.hidden = true;
     botonVaciar.disabled = reservas.length === 0;
 
     if (reservas.length === 0) {
@@ -187,7 +183,7 @@ function mostrarReservas() {
     total.textContent = formatearPrecio(reservas.reduce((suma, r) => suma + r.precio * r.cantidad, 0));
 }
 
-//De lo NUEVO: +1 o -1 persona desde Mi reservacion (respeta minimo 1 y el cupo)
+//Sumativa: +1 o -1 persona desde Mi reservacion (respeta minimo 1 y el cupo)
 function cambiarCantidad(id, cambio) {
     const reserva = reservas.find(r => r.experienciaId === id);
     const nueva = reserva.cantidad + cambio;
@@ -196,10 +192,24 @@ function cambiarCantidad(id, cambio) {
     mostrarReservas();
 }
 
-//De loNUEVO: elimina una experiencia de la reservacion
+//Sumativa: elimina una experiencia de la reservacion, antes pregunta con una alerta de SweetAlert2
 function eliminarReserva(id) {
-    reservas = reservas.filter(r => r.experienciaId !== id);
-    mostrarReservas();
+    const reserva = reservas.find(r => r.experienciaId === id);
+    if (!reserva) return;
+    //Swal.fire regresa una promesa: result.isConfirmed es true solo si el usuario presiono "Si, quitar"
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: `Se quitará "${reserva.nombre}" de tu reservación.`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, quitar",
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#c0392b"
+    }).then(resultado => {
+        if (!resultado.isConfirmed) return;//si cancela, no se borra nada
+        reservas = reservas.filter(r => r.experienciaId !== id);
+        mostrarReservas();
+    });
 }
 
 //agregar eventos a los botones de filtro
@@ -214,27 +224,27 @@ botones.forEach(boton => {//recorre cada boton y agrega un evento de click
     });
 });
 
-//De los Retos(anterior act): evento del buscador se ejecuta cada vez que el usuario escribe una letra
+//De los Retos: evento del buscador se ejecuta cada vez que el usuario escribe una letra
 buscador.addEventListener("input", () => {
     textoBusqueda = buscador.value;
     aplicarFiltros();
 });
 
-//De los Retos(anterior act): evento del boton ordenar cada clic activa o desactiva el orden por precio
+//De los Retos: evento del boton ordenar cada clic activa o desactiva el orden por precio
 botonOrdenar.addEventListener("click", () => {
     ordenarPorPrecio = !ordenarPorPrecio;//cambia de true a false y viceversa
     botonOrdenar.classList.toggle("activo");
     aplicarFiltros();
 });
 
-//De lo NUEVO: slider de precio maximo
+//Sumativa: slider de precio maximo
 precioMaximoInput.addEventListener("input", () => {
     precioMaximo = Number(precioMaximoInput.value);
     precioSalida.textContent = formatearPrecio(precioMaximo);
     aplicarFiltros();
 });
 
-//De loNUEVO: delegacion de eventos, un solo listener sirve aunque las tarjetas se redibujen
+//Sumativa: delegacion de eventos, un solo listener sirve aunque las tarjetas se redibujen
 catalogo.addEventListener("click", evento => {
     const boton = evento.target.closest(".btn-reservar");
     if (boton) agregarReserva(Number(boton.dataset.id));
@@ -249,19 +259,23 @@ listaReservas.addEventListener("click", evento => {
     if (boton.dataset.accion === "eliminar") eliminarReserva(id);
 });
 
-//De lo NUEVO: vaciar con confirmacion dentro de la pagina
+//Sumativa: vaciar todo, antes pregunta con una alerta de SweetAlert2 para evitar borrar por accidente
 botonVaciar.addEventListener("click", () => {
-    confirmarVaciar.hidden = false;
-    botonNoVaciar.focus();
-});
-botonNoVaciar.addEventListener("click", () => {
-    confirmarVaciar.hidden = true;
-    botonVaciar.focus();
-});
-botonSiVaciar.addEventListener("click", () => {
-    reservas = [];
-    mostrarReservas();
-    mostrarAviso(avisoReserva, "Reservación vaciada.", "ok");
+    if (reservas.length === 0) return;
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Se quitarán todas las experiencias de tu reservación.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, vaciar",
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#c0392b"
+    }).then(resultado => {
+        if (!resultado.isConfirmed) return;
+        reservas = [];
+        mostrarReservas();
+        mostrarAviso(avisoReserva, "Reservación vaciada.", "ok");
+    });
 });
 
 cargarExperiencias();//antes: aplicarFiltros()

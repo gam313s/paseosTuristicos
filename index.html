@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explora Riviera Maya</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Sumativa: SweetAlert2 para las alertas de confirmacion (debe cargar antes de app.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="app.js" defer></script>
 </head>
 <body>
@@ -31,11 +33,11 @@
             </div>
         </section>
 
-        <!-- De los Retos(de la anterior act): buscador por nombre y boton para ordenar por precio -->
+        <!-- De los Retos: buscador por nombre y boton para ordenar por precio -->
         <section class="herramientas">
             <input type="text" id="buscador" placeholder="Buscar experiencia por nombre...">
             <button id="ordenar">Ordenar por precio: menor a mayor</button>
-            <!-- NUEVO: filtro de precio máximo -->
+            <!-- Sumativa: filtro de precio máximo -->
             <div class="filtro-precio">
                 <label for="precioMaximo">Precio máximo: <output id="precioSalida" for="precioMaximo">$1000 MXN</output></label>
                 <input type="range" id="precioMaximo" min="0" max="1000" step="10" value="1000">
@@ -44,7 +46,7 @@
 
         <section id="catalogo" class="catalogo"></section>
 
-        <!-- NUEVO: resumen de la reservación -->
+        <!-- Sumativa: resumen de la reservación -->
         <section class="resumen" aria-labelledby="tituloReserva">
             <h2 id="tituloReserva">Mi reservación</h2>
             <div id="listaReservas"><p>No hay experiencias seleccionadas.</p></div>
@@ -53,12 +55,6 @@
             <p class="total">Total: <span id="total">$0 MXN</span></p>
             <div class="acciones-reserva">
                 <button id="vaciar" class="btn-eliminar" disabled>Vaciar reservación</button>
-                <!-- confirmación dentro de la página (sin alert/confirm) -->
-                <span id="confirmarVaciar" hidden>
-                    ¿Seguro que quieres borrar todo?
-                    <button id="siVaciar" class="btn-eliminar">Sí, vaciar</button>
-                    <button id="noVaciar">Cancelar</button>
-                </span>
             </div>
         </section>
     </main>

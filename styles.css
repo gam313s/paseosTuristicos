@@ -23,7 +23,7 @@ body{
     padding: 40px 8%;
     display: flex;
     align-items: center;
-    /*De lo Nuevo: nuevo degradado del encabezado*/
+    /*Nuevo: nuevo degradado del encabezado*/
     background: linear-gradient(135deg,#0b3c5d,#0b7285 60%,#f4a261);
 }
 
@@ -100,7 +100,7 @@ button:hover, button.activo{
     overflow: hidden;
     border-radius: 14px;
     background: var(--claro);
-    border-top: 5px solid var(--acento);/*De los Retos(anterior act) : linea de color arriba de la tarjeta*/
+    border-top: 5px solid var(--acento);/*De los Retos: linea de color arriba de la tarjeta*/
     box-shadow: 0 4px 12px #00000018;
     transition: transform 0.2s;
 }
@@ -112,7 +112,7 @@ button:hover, button.activo{
     min-height: 130px;
     display: grid;
     place-items: center;
-    background: linear-gradient(135deg,var(--secundario),#fde8dc);/*De los Retos(anterior act: fondo con degradado*/
+    background: linear-gradient(135deg,var(--secundario),#fde8dc);/*De los Retos: fondo con degradado*/
     font-size: 3.5rem;
 }
 
@@ -124,7 +124,7 @@ button:hover, button.activo{
 /*etiqueta de la Categoria*/
 .etiqueta{
     color: var(--primario);
-    background: var(--secundario);/*De los Retos(anterior act: etiqueta con fondo*/
+    background: var(--secundario);/*De los Retos: etiqueta con fondo*/
     padding: 3px 10px;
     border-radius: 10px;
     font-size: 0.8rem;
@@ -138,7 +138,7 @@ button:hover, button.activo{
     color: var(--acento);
 }
 
-/*RETO ( de la anterior act) : mensaje cuando no hay resultados, ocupa todas las columnas del grid*/
+/*RETO: mensaje cuando no hay resultados, ocupa todas las columnas del grid*/
 .mensaje{
     grid-column: 1 / -1;
     text-align: center;
@@ -152,7 +152,7 @@ footer{
     color:var(--claro);
     background: var(--oscuro);
 }
-/*De lo NUEVO: filtro de precio máximo*/
+/*Sumativa: filtro de precio máximo*/
 .filtro-precio{
     display: flex;
     align-items: center;
@@ -161,7 +161,7 @@ footer{
 }
 .filtro-precio input{ accent-color: var(--acento); }
 
-/*De loNUEVO: elementos de la tarjeta para reservar*/
+/*Sumativa: elementos de la tarjeta para reservar*/
 .cupo{ color: var(--gris); margin: 6px 0; }
 .tarjeta input[type="number"]{
     width: 75px;
@@ -172,7 +172,7 @@ footer{
 }
 .btn-reservar{ display: block; width: 100%; }
 
-/*De lo NUEVO: resumen de reservación*/
+/*Sumativa: resumen de reservación*/
 .resumen{
     margin-top: 35px;
     padding: 25px;
@@ -195,7 +195,7 @@ footer{
 .total{ text-align: right; font-size: 1.4rem; font-weight: bold; color: var(--acento); margin: 5px 0 15px; }
 .acciones-reserva{ display: flex; justify-content: flex-end; align-items: center; gap: 10px; flex-wrap: wrap; }
 
-/*De lo NUEVO: botones de peligro y mensajes dentro de la página*/
+/*Sumativa: botones de peligro y mensajes dentro de la página*/
 .btn-eliminar{ border-color: var(--peligro); color: var(--peligro); }
 .btn-eliminar:hover{ background: var(--peligro); color: var(--claro); }
 button:disabled{ opacity: .5; cursor: not-allowed; }
